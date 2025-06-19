@@ -60,4 +60,16 @@ public class UserService {
         }
         return new ApiRespDto<>("성공적으로 수정이 완료되었습니다.", null);
     }
+
+    public ApiRespDto<Integer> removeUser(Integer userId) {
+        Optional<User> user = userRepository.getUserByUserId(userId);
+        if(user.isEmpty()) {
+            return new ApiRespDto<>("해당 유저가 존재하지 않습니다.", null);
+        }
+        int result = userRepository.removeUser(userId);
+        if(result == 0) {
+            return new ApiRespDto<>("문제가 발생했습니다.", result);
+        }
+        return new ApiRespDto<>("성공적으로 삭제 되었습니다.", result);
+    }
 }

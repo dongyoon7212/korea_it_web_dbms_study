@@ -28,8 +28,8 @@ public class UserController {
         return ResponseEntity.ok(userService.getUserList());
     }
 
-    @GetMapping("/get")
-    public ResponseEntity<?> getUserByUserId(@RequestParam Integer userId) {
+    @GetMapping("/get/{userId}")
+    public ResponseEntity<?> getUserByUserId(@PathVariable Integer userId) {
         return ResponseEntity.ok(userService.getUserByUserId(userId));
     }
 
@@ -41,5 +41,10 @@ public class UserController {
     @PostMapping("/edit")
     public ResponseEntity<?> editUser(@RequestBody EditUserReqDto editUserReqDto) {
         return ResponseEntity.ok(userService.editUser(editUserReqDto));
+    }
+
+    @PostMapping("/remove")
+    public ResponseEntity<?> removeUser(@RequestParam Integer userId) {
+        return ResponseEntity.ok(userService.removeUser(userId));
     }
 }

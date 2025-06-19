@@ -12,4 +12,5 @@ public interface UserMapper {
     List<User> getUserList();
     Optional<User> getUserByUserId(Integer userId);
     int editUser(User user);
+    int removeUser(Integer userId);
 }
