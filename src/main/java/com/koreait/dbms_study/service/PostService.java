@@ -9,6 +9,7 @@ import com.koreait.dbms_study.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -46,6 +47,15 @@ public class PostService {
             return new ApiRespDto<>("조회 성공", optionalPost.get());
         } catch (Exception e) {
             return new ApiRespDto<>("문제가 발생했습니다", e.getMessage());
+        }
+    }
+
+    public ApiRespDto<?> getPostList() {
+        try {
+            List<Post> postList = postRepository.getPostList();
+            return new ApiRespDto<>("조회 완료", postList);
+        } catch (Exception e) {
+            return new ApiRespDto<>("문제가 발생했습니다.", e.getMessage());
         }
     }
 

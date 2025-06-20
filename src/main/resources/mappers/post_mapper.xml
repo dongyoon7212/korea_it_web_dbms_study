@@ -17,4 +17,11 @@
         where
             post_id = #{postId}
     </select>
+
+    <select id="getPostList">
+        select
+            *
+        from
+            post_tb
+    </select>
 </mapper>
