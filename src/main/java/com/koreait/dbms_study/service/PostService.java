@@ -2,6 +2,7 @@ package com.koreait.dbms_study.service;
 
 import com.koreait.dbms_study.dto.AddPostReqDto;
 import com.koreait.dbms_study.dto.ApiRespDto;
+import com.koreait.dbms_study.dto.EditPostReqDto;
 import com.koreait.dbms_study.entity.Post;
 import com.koreait.dbms_study.entity.User;
 import com.koreait.dbms_study.repository.PostRepository;
@@ -54,6 +55,22 @@ public class PostService {
         try {
             List<Post> postList = postRepository.getPostList();
             return new ApiRespDto<>("조회 완료", postList);
+        } catch (Exception e) {
+            return new ApiRespDto<>("문제가 발생했습니다.", e.getMessage());
+        }
+    }
+
+    public ApiRespDto<?> editPost(EditPostReqDto editPostReqDto) {
+        try {
+            Optional<Post> optionalPost = postRepository.getPostByPostId(editPostReqDto.getPostId());
+            if(optionalPost.isEmpty()){
+                return new ApiRespDto<>("해당 게시물은 존재하지 않습니다.", null);
+            }
+            int result = postRepository.editPost(editPostReqDto.toEntity());
+            if(result != 1) {
+                return new ApiRespDto<>("문제가 발생했습니다.", result);
+            }
+            return new ApiRespDto<>("수정 성공", result);
         } catch (Exception e) {
             return new ApiRespDto<>("문제가 발생했습니다.", e.getMessage());
         }

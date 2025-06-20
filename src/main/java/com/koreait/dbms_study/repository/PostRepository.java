@@ -28,4 +28,9 @@ public class PostRepository {
         List<Post> postList = postMapper.getPostList();
         return postList;
     }
+
+    public int editPost(Post post) {
+        int result = postMapper.editPost(post);
+        return result;
+    }
 }

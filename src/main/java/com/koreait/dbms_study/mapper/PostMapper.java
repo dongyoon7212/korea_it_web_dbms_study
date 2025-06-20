@@ -11,4 +11,5 @@ public interface PostMapper {
     int addPost(Post post);
     Optional<Post> getPostByPostId(Integer postId);
     List<Post> getPostList();
+    int editPost(Post post);
 }
