@@ -35,4 +35,11 @@
         where
             post_id = #{postId}
     </update>
+
+    <delete id="removePost">
+        delete from
+            post_tb
+        where
+            post_id = #{postId}
+    </delete>
 </mapper>

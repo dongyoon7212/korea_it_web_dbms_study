@@ -33,4 +33,9 @@ public class PostRepository {
         int result = postMapper.editPost(post);
         return result;
     }
+
+    public int removePost(Integer postId) {
+        int result = postMapper.removePost(postId);
+        return result;
+    }
 }

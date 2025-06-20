@@ -76,4 +76,20 @@ public class PostService {
         }
     }
 
+    public ApiRespDto<?> removePost(Integer postId) {
+        try {
+            Optional<Post> optionalPost = postRepository.getPostByPostId(postId);
+            if(optionalPost.isEmpty()){
+                return new ApiRespDto<>("해당 게시물은 존재하지 않습니다.", null);
+            }
+            int result = postRepository.removePost(postId);
+            if(result != 1) {
+                return new ApiRespDto<>("문제가 발생했습니다.", result);
+            }
+            return new ApiRespDto<>("삭제 성공", result);
+        } catch (Exception e) {
+            return new ApiRespDto<>("문제가 발생했습니다.", e.getMessage());
+        }
+    }
+
 }

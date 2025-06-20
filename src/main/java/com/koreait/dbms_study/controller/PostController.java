@@ -34,4 +34,9 @@ public class PostController {
         return ResponseEntity.ok(postService.editPost(editPostReqDto));
     }
 
+    @PostMapping("/remove")
+    public ResponseEntity<?> removePost(@RequestParam Integer postId) {
+        return ResponseEntity.ok(postService.removePost(postId));
+    }
+
 }
